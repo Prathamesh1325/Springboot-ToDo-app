@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO App</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        h1 { color: #2c3e50; }
+        li { margin: 8px 0; }
+    </style>
+</head>
+<body>
+<h1>TODO Application</h1>
+
+<form action="/add" method="post">
+    <input type="text" name="task" placeholder="New Task" required/>
+    <button type="submit">Add</button>
+</form>
+
+<ul>
+    <li th:each="todo,iter : ${todos}">
+        <span th:text="${todo}"></span>
+        <form action="/delete" method="post" style="display:inline;">
+            <input type="hidden" name="index" th:value="${iter.index}" />
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>
